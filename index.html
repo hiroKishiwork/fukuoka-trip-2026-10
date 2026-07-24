@@ -4,306 +4,519 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>福岡旅行 詳細行程（10/20-10/22）</title>
+<meta name="description" content="福岡旅行 詳細行程 2026年10月20日〜22日（宗像大社・太宰府ほか）">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f6f7f9;
+    --bg: #f4f2ec;
     --card: #ffffff;
-    --ink: #1f2933;
-    --muted: #6b7280;
-    --accent: #c8102e;
-    --accent-soft: #fdecef;
-    --border: #e5e7eb;
-    --line: #d1d5db;
+    --ink: #22303f;
+    --muted: #6c7581;
+    --navy: #1d3a5f;
+    --navy-soft: #eaeff5;
+    --terra: #c26240;
+    --terra-soft: #f7e9e2;
+    --border: #e6e2d8;
+    --line: #d7d2c6;
+    --rail: #cdd6e1;
+    --shadow: 0 6px 18px rgba(29,58,95,0.08);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #14171c;
-      --card: #1e232b;
-      --ink: #e6e8eb;
-      --muted: #9aa3af;
-      --accent: #ff6b81;
-      --accent-soft: #2a1c20;
-      --border: #2c333d;
-      --line: #3a424d;
+      --bg: #10151d;
+      --card: #1a212c;
+      --ink: #e6eaf0;
+      --muted: #939daa;
+      --navy: #7ba3d6;
+      --navy-soft: #1f2a3a;
+      --terra: #e0895f;
+      --terra-soft: #2b1f19;
+      --border: #2a323e;
+      --line: #333c49;
+      --rail: #333e4d;
+      --shadow: 0 6px 18px rgba(0,0,0,0.35);
     }
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
-    line-height: 1.75;
-    font-size: 16px;
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    line-height: 1.7;
+    font-size: 15.5px;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 20px 16px 64px;
-  }
-  header.hero {
-    background: linear-gradient(135deg, var(--accent), #8a0b20);
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background:
+      radial-gradient(120% 120% at 85% -10%, rgba(194,98,64,0.55), transparent 55%),
+      linear-gradient(135deg, var(--navy), #12273f);
     color: #fff;
-    border-radius: 18px;
-    padding: 28px 22px;
-    margin-bottom: 24px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    padding: 34px 20px 28px;
+    text-align: center;
   }
-  header.hero h1 {
-    margin: 0 0 8px;
-    font-size: 1.55rem;
-    line-height: 1.3;
-    letter-spacing: 0.01em;
-  }
-  header.hero .sub {
-    margin: 0;
-    opacity: 0.92;
-    font-size: 0.95rem;
-  }
-  header.hero .tags {
-    margin-top: 14px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  header.hero .tags span {
-    background: rgba(255,255,255,0.18);
-    padding: 3px 10px;
+  .hero .kicker {
+    display: inline-block;
+    letter-spacing: 0.28em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    opacity: 0.85;
+    border: 1px solid rgba(255,255,255,0.4);
     border-radius: 999px;
-    font-size: 0.78rem;
+    padding: 4px 14px;
+    margin-bottom: 14px;
   }
-  section.day {
+  .hero h1 {
+    margin: 0 0 6px;
+    font-size: 1.7rem;
+    font-weight: 900;
+    line-height: 1.28;
+  }
+  .hero .dates {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.92;
+    font-weight: 500;
+  }
+  .hero .tags {
+    margin-top: 14px;
+    display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+  }
+  .hero .tags span {
+    background: rgba(255,255,255,0.16);
+    padding: 3px 11px; border-radius: 999px; font-size: 0.75rem;
+  }
+
+  /* ---------- Sticky day tabs ---------- */
+  .tabs {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; gap: 6px;
+    padding: 10px 12px;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border);
+    max-width: 780px; margin: 0 auto;
+  }
+  .tab {
+    flex: 1;
+    text-decoration: none;
+    color: var(--muted);
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px 20px 22px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    border-radius: 12px;
+    padding: 8px 6px;
+    text-align: center;
+    line-height: 1.15;
+    transition: all 0.18s ease;
   }
-  section.day > h2 {
-    margin: 0 0 4px;
-    font-size: 1.2rem;
-    color: var(--accent);
-    border-bottom: 2px solid var(--accent-soft);
-    padding-bottom: 10px;
+  .tab b { display: block; font-size: 0.9rem; font-weight: 700; }
+  .tab small { display: block; font-size: 0.72rem; opacity: 0.8; margin-top: 1px; }
+  .tab.active {
+    color: #fff;
+    background: var(--terra);
+    border-color: var(--terra);
+    box-shadow: 0 4px 12px rgba(194,98,64,0.35);
   }
-  h3 {
-    margin: 22px 0 8px;
-    font-size: 1.02rem;
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
+
+  /* ---------- Layout ---------- */
+  .wrap { max-width: 780px; margin: 0 auto; padding: 8px 16px 60px; }
+
+  .day { padding-top: 18px; scroll-margin-top: 76px; }
+  .day-head { margin: 10px 2px 18px; }
+  .day-badge {
+    display: inline-block;
+    background: var(--navy); color: #fff;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    padding: 3px 10px; border-radius: 6px;
   }
-  h3:first-of-type { margin-top: 14px; }
-  ul { margin: 6px 0 6px; padding-left: 1.25em; }
-  li { margin: 4px 0; }
-  li ul { margin-top: 4px; }
-  strong { color: var(--ink); font-weight: 700; }
-  .note-inline { color: var(--muted); font-size: 0.9em; }
+  .day-head h2 {
+    margin: 8px 0 2px; font-size: 1.4rem; font-weight: 900; color: var(--ink);
+  }
+  .day-head h2 small { font-size: 0.95rem; font-weight: 500; color: var(--muted); }
+  .day-theme { margin: 0; color: var(--terra); font-weight: 700; font-size: 0.92rem; }
+
+  /* ---------- Timeline ---------- */
+  .item {
+    display: grid;
+    grid-template-columns: 3.1rem 2rem 1fr;
+    column-gap: 4px;
+  }
+  .time {
+    text-align: right;
+    padding-top: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--navy);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .time.tba { color: var(--muted); font-weight: 500; font-size: 0.74rem; }
+  .marker { position: relative; display: flex; justify-content: center; }
+  .marker::before {
+    content: ""; position: absolute;
+    top: 6px; bottom: -6px; left: 50%;
+    width: 2px; background: var(--rail); transform: translateX(-50%);
+  }
+  .item:last-child .marker::before { display: none; }
+  .dot {
+    position: relative; z-index: 1;
+    width: 2rem; height: 2rem; border-radius: 50%;
+    background: var(--card); border: 2px solid var(--terra);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.95rem; margin-top: 2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 13px 15px 14px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .card h3 { margin: 0 0 6px; font-size: 1rem; font-weight: 700; }
+  .card ul { margin: 4px 0; padding-left: 1.15em; }
+  .card li { margin: 3px 0; }
+  .card li ul { margin-top: 3px; }
+  .card strong { font-weight: 700; color: var(--ink); }
+  .sub { color: var(--muted); font-size: 0.86em; }
+  .price {
+    display: inline-block;
+    background: var(--navy-soft); color: var(--navy);
+    font-weight: 700; font-size: 0.8rem;
+    padding: 1px 8px; border-radius: 6px;
+  }
+
   .tip {
-    background: var(--accent-soft);
-    border-left: 4px solid var(--accent);
+    background: var(--terra-soft);
+    border-left: 3px solid var(--terra);
     border-radius: 8px;
-    padding: 10px 14px;
-    margin: 12px 0;
-    font-size: 0.95rem;
+    padding: 9px 12px; margin: 11px 0 8px;
+    font-size: 0.88rem;
   }
-  .table-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 10px 0 4px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    min-width: 460px;
-    font-size: 0.9rem;
-  }
-  th, td {
-    border: 1px solid var(--line);
-    padding: 8px 10px;
-    text-align: left;
-    vertical-align: top;
-  }
-  th { background: var(--accent-soft); color: var(--ink); font-weight: 700; }
+
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8px 0 2px; }
+  table { border-collapse: collapse; width: 100%; min-width: 440px; font-size: 0.83rem; }
+  th, td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; vertical-align: top; }
+  th { background: var(--navy-soft); color: var(--navy); font-weight: 700; white-space: nowrap; }
+
   .notice {
     background: var(--card);
-    border: 1px dashed var(--accent);
-    border-radius: 16px;
-    padding: 18px 20px;
-    font-size: 0.95rem;
+    border: 1px dashed var(--terra);
+    border-radius: 14px;
+    padding: 16px 18px; margin-top: 20px;
+    font-size: 0.9rem;
   }
-  .notice h2 { margin: 0 0 8px; font-size: 1.05rem; color: var(--accent); }
-  footer {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.82rem;
-    margin-top: 28px;
+  .notice h3 { margin: 0 0 6px; font-size: 1rem; color: var(--terra); }
+  .notice p { margin: 0; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 26px; }
+
+  @media (min-width: 560px) {
+    .item { grid-template-columns: 3.6rem 2.2rem 1fr; }
+    .hero h1 { font-size: 1.9rem; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
   <header class="hero">
+    <span class="kicker">FUKUOKA TRIP</span>
     <h1>福岡旅行 詳細行程</h1>
-    <p class="sub">2026年10月20日（火）〜 10月22日（木）　宗像大社・太宰府ほか</p>
-    <div class="tags">
-      <span>#旅行</span><span>#福岡</span><span>#宗像大社</span><span>#太宰府</span>
-    </div>
+    <p class="dates">2026.10.20 <span style="opacity:.6">(火)</span> – 10.22 <span style="opacity:.6">(木)</span> ｜ 宗像大社・太宰府ほか</p>
+    <div class="tags"><span>#旅行</span><span>#福岡</span><span>#宗像大社</span><span>#太宰府</span></div>
   </header>
 
-  <!-- Day 1 -->
-  <section class="day">
-    <h2>⭐️ 第1日目：10月20日</h2>
+  <nav class="tabs">
+    <a class="tab active" href="#day1"><b>DAY 1</b><small>10/20 博多・南蔵院</small></a>
+    <a class="tab" href="#day2"><b>DAY 2</b><small>10/21 宗像大社</small></a>
+    <a class="tab" href="#day3"><b>DAY 3</b><small>10/22 太宰府</small></a>
+  </nav>
 
-    <h3>① 集合</h3>
-    <ul>
-      <li>場所：博多駅1階「新幹線中央改札口」みどりの窓口前</li>
-      <li>時間：12時頃</li>
-      <li class="note-inline">※新幹線を降りて1階に下りると「新幹線中央改札口」です。</li>
-      <li>集合後、荷物を預けるためにホテルへ移動 → 荷物を預けた後、博多駅へ戻る</li>
-      <li class="note-inline">※博多駅到着前に各自昼食を済ませてお越しください</li>
-    </ul>
+  <main class="wrap">
 
-    <div class="tip">
-      <strong>💡 参考：新幹線 車両案内</strong>（新幹線中央改札口に近いおすすめ号車）
+    <!-- ============ DAY 1 ============ -->
+    <section class="day" id="day1">
+      <div class="day-head">
+        <span class="day-badge">DAY 1</span>
+        <h2>10月20日 <small>（火）</small></h2>
+        <p class="day-theme">博多着 → 城戸南蔵院 涅槃像</p>
+      </div>
+
+      <article class="item">
+        <div class="time">12:00頃</div>
+        <div class="marker"><div class="dot">🚉</div></div>
+        <div class="card">
+          <h3>① 集合</h3>
+          <ul>
+            <li>場所：博多駅1階「新幹線中央改札口」みどりの窓口前</li>
+            <li>時間：12時頃</li>
+            <li class="sub">※新幹線を降りて1階に下りると「新幹線中央改札口」です。</li>
+            <li>集合後、荷物を預けるためにホテルへ移動 → 荷物を預けた後、博多駅へ戻る</li>
+            <li class="sub">※博多駅到着前に各自昼食を済ませてお越しください</li>
+          </ul>
+          <div class="tip"><strong>💡 参考：新幹線 車両案内</strong>（新幹線中央改札口に近いおすすめ号車）</div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>列車種別</th><th>編成</th><th>おすすめ号車</th></tr></thead>
+              <tbody>
+                <tr><td>のぞみ / ひかり</td><td>16両編成</td><td>6〜8号車</td></tr>
+                <tr><td>みずほ / さくら</td><td>8両編成</td><td>3〜5号車</td></tr>
+                <tr><td>つばめ / こだま（一部除く）</td><td>6両編成または8両編成</td><td>3〜5号車（6両の場合は2〜3号車）</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">13:28発</div>
+        <div class="marker"><div class="dot">🛕</div></div>
+        <div class="card">
+          <h3>② 城戸南蔵院 涅槃像 観光 <span class="price">拝観 500円</span></h3>
+          <ul>
+            <li><strong>行きの電車</strong>：福北ゆたか線
+              <ul>
+                <li>博多駅 13:28発 → 城戸南蔵院前駅 13:54着</li>
+                <li>または 博多駅 13:51発 → 城戸南蔵院前駅 14:17着</li>
+              </ul>
+            </li>
+            <li>駅から徒歩3分</li>
+            <li>滞在時間：約2時間、拝観後は沿道のお店でお茶休憩 ☕️</li>
+            <li><strong>帰りの電車</strong>
+              <ul>
+                <li>城戸南蔵院前駅 17:08発 → 博多駅 17:39着</li>
+                <li>または 17:22発 → 博多駅 17:49着</li>
+                <li>または 17:37発 → 博多駅 18:01着</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">18:00</div>
+        <div class="marker"><div class="dot">🍽️</div></div>
+        <div class="card">
+          <h3>③ 夕食</h3>
+          <ul>
+            <li>18時：鯛めし 石蔵 デイトス店（地下1階 あじわいストリート）</li>
+            <li>食後、徒歩でホテルへ戻る</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ DAY 2 ============ -->
+    <section class="day" id="day2">
+      <div class="day-head">
+        <span class="day-badge">DAY 2</span>
+        <h2>10月21日 <small>（水）</small></h2>
+        <p class="day-theme">世界遺産 宗像大社観光</p>
+      </div>
+
+      <article class="item">
+        <div class="time">09:02発</div>
+        <div class="marker"><div class="dot">🚆</div></div>
+        <div class="card">
+          <h3>❶ 移動</h3>
+          <ul>
+            <li>博多駅 9:02発 門司港行き → 東郷駅 9:47着</li>
+            <li>駅タクシー乗り場から3台に分乗（乗車約15分）</li>
+            <li>宗像大社到着（10:20頃）</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">12:30</div>
+        <div class="marker"><div class="dot">🍱</div></div>
+        <div class="card">
+          <h3>❷ 昼食</h3>
+          <ul>
+            <li>12時30分：潮の里（宗像大社沖津宮近く）</li>
+            <li>滞在時間：約45分</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">13:15発</div>
+        <div class="marker"><div class="dot">🚌</div></div>
+        <div class="card">
+          <h3>❸ 移動</h3>
+          <ul>
+            <li>潮の里 13:15出発（バス停まで4分）</li>
+            <li>宗像大社からバスで神湊波止場へ（乗車約10分）</li>
+            <li>バス時刻：13:24発 → 13:35着</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">13:50発</div>
+        <div class="marker"><div class="dot">⛴️</div></div>
+        <div class="card">
+          <h3>❹ フェリーで中津宮（大島）へ</h3>
+          <ul>
+            <li>フェリー おおしま</li>
+            <li><strong>行き</strong>：13:50発 → 14:15着 <span class="sub">（所要25分・片道570円）</span></li>
+            <li><strong>帰り</strong>：16:20発 → 神湊波止場 16:45着</li>
+            <li>島の滞在時間：約2時間</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">16:51発</div>
+        <div class="marker"><div class="dot">🚌</div></div>
+        <div class="card">
+          <h3>❺ 神湊波止場 → 東郷駅</h3>
+          <ul>
+            <li>バス：16:51発 → 東郷駅 17:12着（乗車21分）</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">17:25発</div>
+        <div class="marker"><div class="dot">🚆</div></div>
+        <div class="card">
+          <h3>⑨ 東郷駅 → 博多駅</h3>
+          <ul>
+            <li>17:25発 久留米行き → 18:00 博多着</li>
+            <li>または 17:50発 大牟田行き → 18:21 博多着</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">18:30</div>
+        <div class="marker"><div class="dot">🍲</div></div>
+        <div class="card">
+          <h3>❻ 夕食 <span class="price">コース 3,800円</span></h3>
+          <ul>
+            <li>18:30：水炊き 濱田屋 くうてん</li>
+            <li>テーブルは5名の2つに分かれます</li>
+            <li>水炊きコース：3,800円</li>
+            <li>食後、徒歩でホテルへ戻る</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ DAY 3 ============ -->
+    <section class="day" id="day3">
+      <div class="day-head">
+        <span class="day-badge">DAY 3</span>
+        <h2>10月22日 <small>（木）</small></h2>
+        <p class="day-theme">太宰府天満宮 観光</p>
+      </div>
+
+      <article class="item">
+        <div class="time">09:45発</div>
+        <div class="marker"><div class="dot">🚌</div></div>
+        <div class="card">
+          <h3>⑴ 移動 <span class="price">片道 610円</span></h3>
+          <ul>
+            <li>博多駅バスターミナル（1階11番のりば）</li>
+            <li>9:45発 西鉄太宰府駅行き直通バス → 10:25着</li>
+            <li>乗車時間40分、片道610円 <span class="sub">（往復目安1,220円）</span></li>
+            <li>太宰府天満宮 滞在時間：約2時間</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">12:30</div>
+        <div class="marker"><div class="dot">🍱</div></div>
+        <div class="card">
+          <h3>昼食</h3>
+          <ul>
+            <li>12時30分：和牛明太神楽</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time tba">立寄り</div>
+        <div class="marker"><div class="dot">🍡</div></div>
+        <div class="card">
+          <h3>梅ヶ枝餅 人気店</h3>
+          <ul>
+            <li>さかの家、やす武</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time">14:00〜</div>
+        <div class="marker"><div class="dot">🚌</div></div>
+        <div class="card">
+          <h3>⑵ 帰りのバス <span class="sub">（太宰府天満宮駅直通 → 博多駅行き）</span></h3>
+          <ul>
+            <li>14:00発 / 14:15発 / 14:30発 / 14:45発</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="time tba">解散</div>
+        <div class="marker"><div class="dot">🏁</div></div>
+        <div class="card">
+          <h3>⑶ 解散</h3>
+          <ul>
+            <li>博多駅にて解散</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <div class="notice">
+      <h3>💡 注意事項</h3>
+      <p>第2日目の宗像大社参拝のタイムスケジュールが大変タイトになっておりますが、スムーズに行動できますよう皆様のご協力をよろしくお願いします🙇</p>
     </div>
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr><th>列車種別</th><th>編成</th><th>おすすめ号車</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>のぞみ / ひかり</td><td>16両編成</td><td>6〜8号車</td></tr>
-          <tr><td>みずほ / さくら</td><td>8両編成</td><td>3〜5号車</td></tr>
-          <tr><td>つばめ / こだま（一部除く）</td><td>6両編成または8両編成</td><td>3〜5号車（6両の場合は2〜3号車）</td></tr>
-        </tbody>
-      </table>
-    </div>
 
-    <h3>② 城戸南蔵院 涅槃像 観光</h3>
-    <ul>
-      <li>拝観料：500円</li>
-      <li><strong>行きの電車</strong>：福北ゆたか線
-        <ul>
-          <li>博多駅13:28発 → 城戸南蔵院前駅13:54着</li>
-          <li>または博多駅13:51発 → 城戸南蔵院前駅14:17着</li>
-        </ul>
-      </li>
-      <li>駅から徒歩3分</li>
-      <li>滞在時間：約2時間、拝観後は沿道のお店でお茶休憩☕️</li>
-      <li><strong>帰りの電車</strong>
-        <ul>
-          <li>城戸南蔵院前駅17:08発 → 博多駅17:39着</li>
-          <li>または17:22発 → 博多駅17:49着</li>
-          <li>または17:37発 → 博多駅18:01着</li>
-        </ul>
-      </li>
-    </ul>
+    <footer>福岡旅行 詳細行程 · 2026.10.20 – 10.22</footer>
+  </main>
 
-    <h3>③ 🍽️ 夕食</h3>
-    <ul>
-      <li>18時：鯛めし 石倉 デートス店（地下1階 あじわいストリート）</li>
-      <li>食後、徒歩でホテルへ戻る</li>
-    </ul>
-  </section>
+<script>
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    var sections = tabs.map(function (t) { return document.querySelector(t.getAttribute('href')); });
 
-  <!-- Day 2 -->
-  <section class="day">
-    <h2>⭐️ 第2日目：10月21日（世界遺産 宗像大社観光）</h2>
+    function setActive(id) {
+      tabs.forEach(function (t) {
+        t.classList.toggle('active', t.getAttribute('href') === '#' + id);
+      });
+    }
 
-    <h3>❶ 移動</h3>
-    <ul>
-      <li>博多駅9:02発 門司港行き → 東郷駅9:47着</li>
-      <li>駅タクシー乗り場から3台に分乗（乗車約15分）</li>
-      <li>宗像大社到着（10:20頃）</li>
-    </ul>
+    if ('IntersectionObserver' in window) {
+      var visible = {};
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { visible[e.target.id] = e.intersectionRatio; });
+        // pick the most-visible section
+        var best = null, bestRatio = 0;
+        sections.forEach(function (s) {
+          var r = visible[s.id] || 0;
+          if (r >= bestRatio) { bestRatio = r; best = s.id; }
+        });
+        if (best) setActive(best);
+      }, { rootMargin: '-72px 0px -55% 0px', threshold: [0, 0.25, 0.5, 1] });
+      sections.forEach(function (s) { io.observe(s); });
+    }
 
-    <h3>❷ 🍱 昼食</h3>
-    <ul>
-      <li>12時30分：潮の里（宗像大社沖津宮近く）</li>
-      <li>滞在時間：約45分</li>
-    </ul>
-
-    <h3>❸ 移動</h3>
-    <ul>
-      <li>潮の里13:15出発（バス停まで4分）</li>
-      <li>宗像大社からバスで神湊波止場へ（乗車約10分）</li>
-      <li>バス時刻：13:24発 → 13:35着</li>
-    </ul>
-
-    <h3>❹ フェリーで中津宮（大島）へ</h3>
-    <ul>
-      <li>フェリー おおしま</li>
-      <li><strong>行き</strong>：13:50発 → 14:15着（所要時間25分、片道570円）</li>
-      <li><strong>帰り</strong>：16:20発 → 神湊波止場16:45着</li>
-      <li>島の滞在時間：約2時間</li>
-    </ul>
-
-    <h3>❺ 神湊波止場 → 東郷駅</h3>
-    <ul>
-      <li>バス：16:51発 → 東郷駅17:12着（乗車21分）</li>
-    </ul>
-
-    <h3>⑨ 東郷駅 → 博多駅</h3>
-    <ul>
-      <li>17:25発 久留米行き → 18:00博多着</li>
-      <li>または17:50発 大牟田行き → 18:21博多着</li>
-    </ul>
-
-    <h3>❻ 🍲 夕食</h3>
-    <ul>
-      <li>18:30：水炊き 浜田屋 くうてん</li>
-      <li>テーブルは5名の2つに分かれます</li>
-      <li>水炊きコース：3,800円</li>
-      <li>食後、徒歩でホテルへ戻る</li>
-    </ul>
-  </section>
-
-  <!-- Day 3 -->
-  <section class="day">
-    <h2>⭐️ 第3日目：10月22日（太宰府天満宮 観光）</h2>
-
-    <h3>⑴ 移動</h3>
-    <ul>
-      <li>博多駅バスターミナル（1階11番のりば）</li>
-      <li>9:45発 西鉄太宰府駅行き直通バス → 10:25着</li>
-      <li>乗車時間40分、往復料金1,400円</li>
-      <li>太宰府天満宮 滞在時間：約2時間</li>
-    </ul>
-
-    <h3>🍱 昼食</h3>
-    <ul>
-      <li>12時30分：和牛明太神楽</li>
-    </ul>
-
-    <h3>🍡 梅ヶ枝餅 人気店</h3>
-    <ul>
-      <li>さかの家、やす武</li>
-    </ul>
-
-    <h3>⑵ 帰りのバス（太宰府天満宮駅直通 → 博多駅行き）</h3>
-    <ul>
-      <li>14:00発 / 14:15発 / 14:30発 / 14:45発</li>
-    </ul>
-
-    <h3>⑶ 解散</h3>
-    <ul>
-      <li>博多駅にて解散</li>
-    </ul>
-  </section>
-
-  <!-- Notice -->
-  <div class="notice">
-    <h2>💡 注意事項</h2>
-    <p style="margin:0;">第2日目の宗像大社参拝のタイムスケジュールが大変タイトになっておりますが、スムーズに行動できますよう皆様のご協力をよろしくお願いします🙇</p>
-  </div>
-
-  <footer>福岡旅行 詳細行程 · 2026.10.20 – 10.22</footer>
-
-</div>
+    // Update active immediately on tap
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () { setActive(t.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
 </body>
 </html>
