@@ -62,16 +62,12 @@ export default async function handler(req, res) {
   try {
     const manifest = await readManifest();
 
-    // --- 元のフリー素材に戻す（全員に反映：Blobを削除） ---
+    // --- 元のフリー素材に戻す（全員に反映：Blob実体を削除） ---
     if (revert) {
       try {
-        const entry = manifest[theme];
-        if (entry && entry.url) {
-          await del(entry.url);
-        } else {
-          const { blobs } = await list({ prefix: 'photos/' + theme + '.' });
-          for (const b of blobs) { await del(b.url); }
-        }
+        // 実体を list() で確実に特定して削除（manifestが古くても確実に消す）
+        const { blobs } = await list({ prefix: 'photos/' + theme + '.' });
+        for (const b of blobs) { await del(b.url); }
       } catch (e) { /* 既に無い場合など無視 */ }
       delete manifest[theme];
       await writeManifest(manifest);
