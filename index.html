@@ -87,6 +87,8 @@
   .leaflet-popup-content { font-family: "M PLUS Rounded 1c","Noto Sans JP",sans-serif; font-weight: 700; color: #5c4a52; }
   .leaflet-popup-content a { color: #3f8577; }
   .map-note { margin: 7px 6px 0; font-size: 0.72rem; color: var(--muted); }
+  .route-link { display: inline-block; margin-top: 3px; color: var(--mint-strong); font-weight: 700; text-decoration: none; }
+  .route-link:hover { text-decoration: underline; }
 
   /* ---------- View tabs ---------- */
   .viewtabs {
@@ -206,11 +208,16 @@
   <div class="map-wrap">
     <div class="map-title-row">
       <span class="map-title">🗺️ 全体マップ（主な立ち寄り先）</span>
-      <a class="gmap-btn" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/search/?api=1&query=33.7174,130.4937">📍 Googleマップで開く</a>
+      <a class="gmap-btn" id="gmapAll" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/?api=1&query=%E5%AE%97%E5%83%8F%E5%A4%A7%E7%A4%BE%20%E8%BE%BA%E6%B4%A5%E5%AE%AE%2033.8239%2C130.5142">📍 Googleマップで開く</a>
     </div>
     <div id="map"></div>
-    <p class="map-note">ピンをタップすると地点名と個別の Googleマップリンクが表示されます。© OpenStreetMap contributors</p>
+    <p class="map-note">
+      ピンをタップすると地点名と個別の Googleマップリンクが表示されます。
+      <a id="gmapRoute" class="route-link" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/?api=1&origin=33.5897%2C130.4207&destination=33.5215%2C130.5353&waypoints=33.6432%2C130.5553%7C33.8239%2C130.5142%7C33.8368%2C130.5104%7C33.8894%2C130.4262&travelmode=driving">🚗 全行程をルートで開く</a><br>
+      © OpenStreetMap contributors
+    </p>
   </div>
 
   <main class="wrap">
@@ -537,7 +544,7 @@
 
     <footer>
       福岡旅行 詳細行程 · 2026.10.20 – 10.22 <span class="heart">♡</span><br>
-      <span class="ver">v1.2</span>
+      <span class="ver">v1.3</span>
     </footer>
   </main>
 
@@ -653,16 +660,42 @@
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18, attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
+
+      // 地点名 + 緯度経度 を query に入れると、Googleマップ側で明確な「ピン」が立つ
+      // （座標のみだと地図が中心移動するだけでマーカーが出ないことがある）
+      function gmapSearch(name, lat, lng) {
+        return 'https://www.google.com/maps/search/?api=1&query=' +
+          encodeURIComponent(name + ' ' + lat + ',' + lng);
+      }
+
       var bounds = [];
       places.forEach(function (p) {
-        var q = p.coords[0] + ',' + p.coords[1];
+        var url = gmapSearch(p.name, p.coords[0], p.coords[1]);
         var html = '<b>' + p.name + '</b><br>' +
-          '<a href="https://www.google.com/maps/search/?api=1&query=' + q + '" target="_blank" rel="noopener">📍 Googleマップで開く</a>';
+          '<a href="' + url + '" target="_blank" rel="noopener">📍 Googleマップで開く</a>';
         L.marker(p.coords).addTo(map).bindPopup(html);
         bounds.push(p.coords);
       });
       map.fitBounds(bounds, { padding: [30, 30] });
       map.once('focus', function () { map.scrollWheelZoom.enable(); });
+
+      // 全体ボタン：中心（海上）の座標ではなく、代表地点（宗像大社）に明確なピンを立てる
+      var repr = places[2];
+      var allBtn = document.getElementById('gmapAll');
+      if (allBtn) allBtn.href = gmapSearch(repr.name, repr.coords[0], repr.coords[1]);
+
+      // ルートボタン：全地点を線で結んで表示（origin→waypoints→destination）
+      var routeBtn = document.getElementById('gmapRoute');
+      if (routeBtn) {
+        var origin = places[0].coords.join(',');
+        var destination = places[places.length - 1].coords.join(',');
+        var waypoints = places.slice(1, -1).map(function (p) { return p.coords.join(','); }).join('|');
+        routeBtn.href = 'https://www.google.com/maps/dir/?api=1' +
+          '&origin=' + encodeURIComponent(origin) +
+          '&destination=' + encodeURIComponent(destination) +
+          '&waypoints=' + encodeURIComponent(waypoints) +
+          '&travelmode=driving';
+      }
     }
   })();
 </script>
