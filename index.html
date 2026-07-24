@@ -47,7 +47,7 @@
     }
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0;
     background: radial-gradient(120% 90% at 100% 0%, var(--mint-soft), transparent 55%), var(--bg);
@@ -59,6 +59,19 @@
 
   /* ---------- Hero ---------- */
   .hero { text-align: center; padding: 30px 18px 8px; max-width: 760px; margin: 0 auto; }
+  .hero-inner { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .hero-title { }
+  .hero-card {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    text-decoration: none; background: var(--card); border: 1.5px solid var(--pink-soft);
+    border-radius: 16px; padding: 12px 18px; box-shadow: var(--shadow-sm); color: var(--pink-strong);
+    min-width: 150px; transition: transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .hero-card:hover { border-color: var(--pink); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .hero-card-emoji { font-size: 1.7rem; line-height: 1; }
+  .hero-card-title { font-family: "M PLUS Rounded 1c", sans-serif; font-weight: 800; font-size: 1rem; margin-top: 4px; }
+  .hero-card-sub { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+  #gallery { scroll-margin-top: 14px; }
   .hero .deco { font-size: 0.9rem; color: var(--pink); letter-spacing: 0.4em; margin-bottom: 6px; }
   .hero h1 { margin: 0 0 8px; font-size: 1.72rem; font-weight: 800; color: var(--pink-strong); line-height: 1.32; }
   .hero h1 .heart { color: var(--pink); }
@@ -217,9 +230,18 @@
 <body>
 
   <header class="hero">
-    <div class="deco">✿ ・ ♡ ・ ✿</div>
-    <h1>福岡旅行 詳細行程 <span class="heart">♡</span></h1>
-    <p class="dates">2026.10.20 (火) – 10.22 (木) ｜ 宗像大社・太宰府</p>
+    <div class="hero-inner">
+      <div class="hero-title">
+        <div class="deco">✿ ・ ♡ ・ ✿</div>
+        <h1>福岡旅行 詳細行程 <span class="heart">♡</span></h1>
+        <p class="dates">2026.10.20 (火) – 10.22 (木) ｜ 宗像大社・太宰府</p>
+      </div>
+      <a class="hero-card" href="#gallery">
+        <span class="hero-card-emoji">📸</span>
+        <span class="hero-card-title">みんなの写真</span>
+        <span class="hero-card-sub">旅の思い出を投稿・閲覧 →</span>
+      </a>
+    </div>
   </header>
 
   <!-- 差し替え候補: カバー写真。「写真を変更」ボタンから全員共有で差し替え可（フォールバックは下の src のフリー素材） -->
