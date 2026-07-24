@@ -1,7 +1,7 @@
 import { put, del, list } from '@vercel/blob';
 
 // テーマID（index.html の img[data-theme] と一致させる）
-const ALLOWED = ['cover', 'nanzoin', 'taimeshi', 'munakata', 'oshima', 'mizutaki', 'dazaifu', 'umegaemochi'];
+const ALLOWED = ['cover', 'nanzoin', 'taimeshi', 'munakata', 'oshima', 'mizutaki', 'kagura', 'dazaifu', 'umegaemochi'];
 const MAX = 4.5 * 1024 * 1024; // Vercel Functions のリクエストボディ上限に合わせる（約4.5MB）
 
 async function readRawBody(req) {

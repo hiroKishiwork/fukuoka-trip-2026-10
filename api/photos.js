@@ -1,7 +1,7 @@
 import { list } from '@vercel/blob';
 
 // テーマID（index.html の img[data-theme] と一致）
-const THEMES = ['cover', 'nanzoin', 'taimeshi', 'munakata', 'oshima', 'mizutaki', 'dazaifu', 'umegaemochi'];
+const THEMES = ['cover', 'nanzoin', 'taimeshi', 'munakata', 'oshima', 'mizutaki', 'kagura', 'dazaifu', 'umegaemochi'];
 
 // 現在アップロード済みの写真を返す（{ theme: { url, updatedAt } }）。
 // manifest.json の上書き伝播は遅いため、実体の list() から生成して即時性を確保する。
