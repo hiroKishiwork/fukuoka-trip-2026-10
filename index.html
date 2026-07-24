@@ -623,7 +623,7 @@
 
     <footer>
       福岡旅行 詳細行程 · 2026.10.20 – 10.22 <span class="heart">♡</span><br>
-      <span class="ver">v1.4</span>
+      <span class="ver">v1.5</span>
     </footer>
   </main>
 
@@ -663,14 +663,41 @@
 
     function bust(url, v) { return url + (url.indexOf('?') > -1 ? '&' : '?') + 'v=' + encodeURIComponent(v || ''); }
 
-    // 読み込み時：manifestを見て最新画像に差し替え（全訪問者共通）
-    fetch('/api/photos').then(function (r) { return r.ok ? r.json() : {}; }).then(function (m) {
+    // 読み込み時：manifestを見て各セクションの写真を最新に差し替え（ヒーローは下でランダム表示）
+    var photosPromise = fetch('/api/photos').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; });
+    photosPromise.then(function (m) {
       if (!m) return;
       document.querySelectorAll('img[data-theme]').forEach(function (img) {
+        if (img.closest('.hero-photo')) return; // ヒーローはランダム表示で別処理
         var e = m[img.dataset.theme];
         if (e && e.url) img.src = bust(e.url, e.updatedAt);
       });
-    }).catch(function () {});
+    });
+
+    // ヒーロー画像：博多港夜景（カバー）＋ みんなの写真 からランダムに1枚表示
+    (function setupRandomHero() {
+      var heroImg = document.querySelector('.hero-photo img[data-theme="cover"]');
+      var heroCap = document.querySelector('.hero-photo figcaption');
+      if (!heroImg) return;
+      var galleryPromise = fetch('/api/gallery-list').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });
+      Promise.all([photosPromise, galleryPromise]).then(function (res) {
+        var photos = res[0] || {}, gallery = res[1] || [];
+        var pool = [];
+        // 博多港夜景（アップロード済みカバーがあればそれ、無ければ既定のフリー素材）
+        var cover = photos.cover;
+        var coverUrl = (cover && cover.url) ? bust(cover.url, cover.updatedAt) : heroImg.dataset.default;
+        pool.push({ url: coverUrl, caption: '博多ベイサイド 🌃' });
+        // みんなの写真
+        gallery.forEach(function (g) {
+          if (g && g.url) pool.push({ url: g.url, caption: '📸 みんなの写真より' + (g.name ? '（' + g.name + '）' : '') });
+        });
+        var pick = pool[Math.floor(Math.random() * pool.length)];
+        if (pick) {
+          heroImg.src = pick.url;
+          if (heroCap) heroCap.textContent = pick.caption;
+        }
+      });
+    })();
 
     function upload(theme, file, img, btns) {
       if (OKTYPES.indexOf(file.type) < 0) { showToast('画像は jpg / png / webp のみ対応です', false); return; }
