@@ -19,6 +19,7 @@
     --pink-strong: #d67e94;
     --pink-soft: #fce7ec;
     --mint: #9fd4c8;
+    --mint-strong: #6fbdad;
     --mint-soft: #e6f5f1;
     --cream: #fdf3e7;
     --border: #f4e0e5;
@@ -36,6 +37,7 @@
       --pink-strong: #efb0c0;
       --pink-soft: #3b2a31;
       --mint: #9fd0c6;
+      --mint-strong: #7cc3b4;
       --mint-soft: #24312d;
       --cream: #332a24;
       --border: #3d2f35;
@@ -48,89 +50,62 @@
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background:
-      radial-gradient(120% 90% at 100% 0%, var(--mint-soft), transparent 55%),
-      var(--bg);
+    background: radial-gradient(120% 90% at 100% 0%, var(--mint-soft), transparent 55%), var(--bg);
     color: var(--ink);
     font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
-    line-height: 1.75;
-    font-size: 15.5px;
-    -webkit-font-smoothing: antialiased;
+    line-height: 1.75; font-size: 15.5px; -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, .day-badge, .hero .dates, .rounded {
-    font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
-  }
+  h1, h2, h3, .hero .dates, .rounded { font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif; }
 
   /* ---------- Hero ---------- */
-  .hero {
-    text-align: center;
-    padding: 30px 18px 8px;
-    max-width: 760px; margin: 0 auto;
-  }
+  .hero { text-align: center; padding: 30px 18px 8px; max-width: 760px; margin: 0 auto; }
   .hero .deco { font-size: 0.9rem; color: var(--pink); letter-spacing: 0.4em; margin-bottom: 6px; }
-  .hero h1 {
-    margin: 0 0 8px;
-    font-size: 1.72rem; font-weight: 800; letter-spacing: 0.01em;
-    color: var(--pink-strong);
-    line-height: 1.32;
-  }
+  .hero h1 { margin: 0 0 8px; font-size: 1.72rem; font-weight: 800; color: var(--pink-strong); line-height: 1.32; }
   .hero h1 .heart { color: var(--pink); }
   .hero .dates {
-    display: inline-block;
-    background: var(--card);
-    border: 1.5px dashed var(--pink);
-    color: var(--pink-strong);
-    border-radius: 999px;
-    padding: 5px 16px;
-    font-size: 0.86rem; font-weight: 700;
-    box-shadow: var(--shadow-sm);
+    display: inline-block; background: var(--card); border: 1.5px dashed var(--pink); color: var(--pink-strong);
+    border-radius: 999px; padding: 5px 16px; font-size: 0.86rem; font-weight: 700; box-shadow: var(--shadow-sm);
   }
-  .hero-photo {
-    max-width: 760px; margin: 16px auto 0; padding: 0 16px;
-  }
-  .hero-photo .frame {
-    background: var(--card); padding: 9px 9px 8px; border-radius: 20px;
-    box-shadow: var(--shadow); border: 1px solid var(--border);
-  }
-  .hero-photo img {
-    width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block;
-  }
+  .hero-photo { max-width: 760px; margin: 16px auto 0; padding: 0 16px; }
+  .hero-photo .frame { background: var(--card); padding: 9px 9px 8px; border-radius: 20px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+  .hero-photo img { width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block; background: var(--pink-soft); }
   .hero-photo figcaption { text-align: right; font-size: 0.7rem; color: var(--muted); margin-top: 5px; }
 
   /* ---------- Overview map ---------- */
   .map-wrap { max-width: 760px; margin: 22px auto 0; padding: 0 16px; }
-  .map-title {
-    margin: 0 4px 8px; font-size: 0.95rem; font-weight: 700; color: var(--pink-strong);
-    font-family: "M PLUS Rounded 1c", sans-serif;
+  .map-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 4px 8px; flex-wrap: wrap; }
+  .map-title { font-size: 0.95rem; font-weight: 700; color: var(--pink-strong); font-family: "M PLUS Rounded 1c", sans-serif; }
+  .gmap-btn {
+    font-family: "M PLUS Rounded 1c", sans-serif; font-size: 0.76rem; font-weight: 700; text-decoration: none;
+    color: #fff; background: linear-gradient(135deg, var(--mint), var(--mint-strong)); border-radius: 999px;
+    padding: 5px 13px; box-shadow: var(--shadow-sm); white-space: nowrap;
   }
   #map {
-    height: 330px; width: 100%;
-    border-radius: 20px;
-    border: 3px solid var(--pink-soft);
-    outline: 1.5px solid var(--pink);
-    box-shadow: var(--shadow);
-    background: var(--card);
-    z-index: 0;
+    height: 330px; width: 100%; border-radius: 20px; border: 3px solid var(--pink-soft);
+    outline: 1.5px solid var(--pink); box-shadow: var(--shadow); background: var(--card); z-index: 0;
   }
   .leaflet-popup-content { font-family: "M PLUS Rounded 1c","Noto Sans JP",sans-serif; font-weight: 700; color: #5c4a52; }
+  .leaflet-popup-content a { color: #3f8577; }
   .map-note { margin: 7px 6px 0; font-size: 0.72rem; color: var(--muted); }
+
+  /* ---------- View tabs ---------- */
+  .viewtabs {
+    position: sticky; top: 0; z-index: 30; display: flex; gap: 6px;
+    padding: 10px 0 10px; margin: 0 0 4px; background: var(--bg);
+    box-shadow: 0 6px 10px -8px rgba(214,126,148,0.4);
+  }
+  .vtab {
+    flex: 1; font-family: "M PLUS Rounded 1c", sans-serif; font-weight: 700; font-size: 0.85rem;
+    color: var(--pink-strong); background: var(--card); border: 1.5px solid var(--pink-soft);
+    border-radius: 999px; padding: 7px 4px; cursor: pointer; transition: all .15s;
+  }
+  .vtab.active { color: #fff; background: linear-gradient(135deg, var(--pink), var(--pink-strong)); border-color: var(--pink-strong); box-shadow: var(--shadow-sm); }
 
   /* ---------- Layout ---------- */
   .wrap { max-width: 760px; margin: 0 auto; padding: 10px 16px 60px; }
-
-  .day { padding-top: 22px; }
+  .day { padding-top: 16px; }
   .day-head { text-align: center; margin: 8px 0 20px; }
-  .day-badge {
-    display: inline-block; position: relative;
-    background: linear-gradient(135deg, var(--pink), var(--pink-strong));
-    color: #fff; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em;
-    padding: 5px 20px; border-radius: 999px;
-    box-shadow: var(--shadow-sm);
-  }
-  .day-badge::before, .day-badge::after { content: "🎀"; position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.8rem; }
-  .day-badge::before { left: -18px; }
-  .day-badge::after { right: -18px; }
-  .day-head h2 { margin: 12px 0 3px; font-size: 1.42rem; font-weight: 800; color: var(--ink); }
+  .day-head h2 { margin: 0 0 3px; font-size: 1.42rem; font-weight: 800; color: var(--ink); }
   .day-head h2 small { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
   .day-theme { margin: 0; color: var(--pink-strong); font-weight: 700; font-size: 0.9rem; }
   .day-theme::before { content: "✿ "; color: var(--mint); }
@@ -138,29 +113,17 @@
 
   /* ---------- Timeline ---------- */
   .item { display: grid; grid-template-columns: 3.1rem 2rem 1fr; column-gap: 5px; }
-  .time {
-    text-align: right; padding-top: 8px;
-    font-size: 0.8rem; font-weight: 700; color: var(--pink-strong);
-    font-variant-numeric: tabular-nums; white-space: nowrap;
-  }
+  .time { text-align: right; padding-top: 8px; font-size: 0.8rem; font-weight: 700; color: var(--pink-strong); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .time.tba { color: var(--muted); font-weight: 500; font-size: 0.72rem; }
   .marker { position: relative; display: flex; justify-content: center; }
-  .marker::before {
-    content: ""; position: absolute; top: 8px; bottom: -8px; left: 50%;
-    width: 3px; background: var(--line); border-radius: 3px; transform: translateX(-50%);
-  }
+  .marker::before { content: ""; position: absolute; top: 8px; bottom: -8px; left: 50%; width: 3px; background: var(--line); border-radius: 3px; transform: translateX(-50%); }
   .item:last-child .marker::before { display: none; }
   .dot {
-    position: relative; z-index: 1; width: 2rem; height: 2rem; border-radius: 50%;
-    background: var(--card); border: 2.5px solid var(--pink);
-    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1; width: 2rem; height: 2rem; border-radius: 50%; background: var(--card);
+    border: 2.5px solid var(--pink); display: flex; align-items: center; justify-content: center;
     font-size: 0.92rem; margin-top: 4px; box-shadow: 0 2px 6px rgba(214,126,148,0.22);
   }
-  .card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 18px; padding: 14px 16px 15px; margin-bottom: 16px;
-    box-shadow: var(--shadow-sm);
-  }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 14px 16px 15px; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
   .card h3 { margin: 0 0 8px; font-size: 1.02rem; font-weight: 700; color: var(--ink); }
   .card ul { margin: 4px 0; padding-left: 1.15em; }
   .card li { margin: 3px 0; }
@@ -168,43 +131,46 @@
   .card li::marker { color: var(--pink); }
   .card strong { font-weight: 700; color: var(--pink-strong); }
   .sub { color: var(--muted); font-size: 0.86em; }
-  .price {
-    display: inline-block; background: var(--mint-soft); color: #3f8577;
-    font-weight: 700; font-size: 0.76rem; padding: 1px 9px; border-radius: 999px;
-    font-family: "M PLUS Rounded 1c", sans-serif;
-  }
-  @media (prefers-color-scheme: dark) { .price { color: #a7e0d3; } }
+  .price { display: inline-block; background: var(--mint-soft); color: #3f8577; font-weight: 700; font-size: 0.76rem; padding: 1px 9px; border-radius: 999px; font-family: "M PLUS Rounded 1c", sans-serif; }
+  @media (prefers-color-scheme: dark) { .price { color: #a7e0d3; } .leaflet-popup-content { color: #333; } }
 
-  /* ---------- Photo (polaroid) ---------- */
-  .photo {
-    margin: 0 0 12px; background: var(--card); padding: 8px 8px 6px;
-    border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-sm);
-  }
-  .photo img {
-    width: 100%; height: 175px; object-fit: cover; border-radius: 9px; display: block;
-    background: var(--pink-soft);
-  }
+  /* ---------- Photo (polaroid) + actions ---------- */
+  .photo { margin: 0 0 12px; background: var(--card); padding: 8px 8px 6px; border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-sm); }
+  .photo img { width: 100%; height: 175px; object-fit: cover; border-radius: 9px; display: block; background: var(--pink-soft); }
   .photo figcaption { text-align: right; font-size: 0.68rem; color: var(--muted); margin-top: 5px; }
-
-  .tip {
-    background: var(--cream); border-left: 3px solid var(--pink);
-    border-radius: 10px; padding: 9px 12px; margin: 11px 0 8px; font-size: 0.88rem;
+  .photo-actions { display: flex; gap: 8px; margin-top: 7px; flex-wrap: wrap; }
+  .mini-btn {
+    font-family: "M PLUS Rounded 1c", sans-serif; font-size: 0.72rem; font-weight: 700; border-radius: 999px;
+    padding: 4px 12px; cursor: pointer; border: 1.5px solid var(--pink); background: var(--pink-soft); color: var(--pink-strong); transition: all .15s;
   }
+  .mini-btn.change { background: linear-gradient(135deg, var(--pink), var(--pink-strong)); color: #fff; border-color: var(--pink-strong); }
+  .mini-btn.revert { background: var(--card); }
+  .mini-btn:hover { filter: brightness(1.03); }
+  .mini-btn:disabled { opacity: .55; cursor: default; }
+
+  .tip { background: var(--cream); border-left: 3px solid var(--pink); border-radius: 10px; padding: 9px 12px; margin: 11px 0 8px; font-size: 0.88rem; }
   .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8px 0 2px; }
   table { border-collapse: collapse; width: 100%; min-width: 440px; font-size: 0.83rem; }
   th, td { border: 1px solid var(--border); padding: 7px 9px; text-align: left; vertical-align: top; }
   th { background: var(--pink-soft); color: var(--pink-strong); font-weight: 700; white-space: nowrap; }
 
-  .notice {
-    background: var(--card); border: 2px dashed var(--pink);
-    border-radius: 18px; padding: 16px 18px; margin-top: 22px; font-size: 0.9rem;
-    box-shadow: var(--shadow-sm);
-  }
+  .notice { background: var(--card); border: 2px dashed var(--pink); border-radius: 18px; padding: 16px 18px; margin-top: 22px; font-size: 0.9rem; box-shadow: var(--shadow-sm); }
   .notice h3 { margin: 0 0 6px; font-size: 1rem; color: var(--pink-strong); }
   .notice p { margin: 0; }
 
   footer { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 28px; }
   footer .heart { color: var(--pink); }
+  footer .ver { display: inline-block; margin-top: 5px; font-size: 0.68rem; color: var(--muted); opacity: .8; }
+
+  /* ---------- Toast ---------- */
+  .toast {
+    position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%) translateY(20px);
+    background: var(--pink-strong); color: #fff; font-size: 0.85rem; font-weight: 700; font-family: "M PLUS Rounded 1c", sans-serif;
+    padding: 10px 18px; border-radius: 999px; box-shadow: var(--shadow); opacity: 0; pointer-events: none;
+    transition: all .25s; z-index: 1000; max-width: 90%; text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.err { background: #d9736f; }
 
   @media (min-width: 560px) {
     .item { grid-template-columns: 3.6rem 2.2rem 1fr; }
@@ -222,28 +188,43 @@
     <p class="dates">2026.10.20 (火) – 10.22 (木) ｜ 宗像大社・太宰府</p>
   </header>
 
-  <!-- 差し替え候補: 旅行後に実際の集合写真などへ差し替え可（下の src を置き換えてください） -->
+  <!-- 差し替え候補: カバー写真。「写真を変更」ボタンから全員共有で差し替え可（フォールバックは下の src のフリー素材） -->
   <div class="hero-photo">
     <div class="frame">
-      <img loading="lazy" data-replaceable="true" data-theme="fukuoka-girlstrip-cover"
+      <img loading="lazy" data-theme="cover"
+           data-default="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=70&auto=format&fit=crop"
            src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=70&auto=format&fit=crop"
            alt="女子旅イメージ（着物と街並み）">
       <figcaption>※イメージ画像（フリー素材／実際の場所とは異なります）</figcaption>
+      <div class="photo-actions">
+        <button type="button" class="mini-btn change" title="jpg / png / webp・最大4.5MB">📷 写真を変更</button>
+        <button type="button" class="mini-btn revert">元に戻す</button>
+      </div>
     </div>
   </div>
 
   <div class="map-wrap">
-    <p class="map-title">🗺️ 全体マップ（主な立ち寄り先）</p>
+    <div class="map-title-row">
+      <span class="map-title">🗺️ 全体マップ（主な立ち寄り先）</span>
+      <a class="gmap-btn" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/?api=1&query=33.7174,130.4937">📍 Googleマップで開く</a>
+    </div>
     <div id="map"></div>
-    <p class="map-note">ピンをタップすると地点名が表示されます。© OpenStreetMap contributors</p>
+    <p class="map-note">ピンをタップすると地点名と個別の Googleマップリンクが表示されます。© OpenStreetMap contributors</p>
   </div>
 
   <main class="wrap">
 
+    <nav class="viewtabs" aria-label="表示切り替え">
+      <button type="button" class="vtab active" data-view="all">全部</button>
+      <button type="button" class="vtab" data-view="day1">Day1</button>
+      <button type="button" class="vtab" data-view="day2">Day2</button>
+      <button type="button" class="vtab" data-view="day3">Day3</button>
+    </nav>
+
     <!-- ============ DAY 1 ============ -->
     <section class="day" id="day1">
       <div class="day-head">
-        <span class="day-badge">DAY 1</span>
         <h2>10月20日 <small>（火）</small></h2>
         <p class="day-theme">博多着 → 城戸南蔵院 涅槃像</p>
       </div>
@@ -279,12 +260,17 @@
         <div class="marker"><div class="dot">🛕</div></div>
         <div class="card">
           <h3>② 城戸南蔵院 涅槃像 観光 <span class="price">拝観 500円</span></h3>
-          <!-- 差し替え候補: お寺の雰囲気画像。実際に撮った写真へ src を差し替え可 -->
+          <!-- 差し替え候補: お寺の雰囲気画像。「写真を変更」で差し替え可 -->
           <figure class="photo">
-            <img loading="lazy" data-replaceable="true" data-theme="nanzoin-temple"
+            <img loading="lazy" data-theme="nanzoin"
+                 data-default="https://images.unsplash.com/photo-1574236170880-fbbca132d83d?w=800&q=70&auto=format&fit=crop"
                  src="https://images.unsplash.com/photo-1574236170880-fbbca132d83d?w=800&q=70&auto=format&fit=crop"
                  alt="お寺のイメージ">
             <figcaption>※イメージ画像（フリー素材）</figcaption>
+            <div class="photo-actions">
+              <button type="button" class="mini-btn change" title="jpg / png / webp・最大4.5MB">📷 写真を変更</button>
+              <button type="button" class="mini-btn revert">元に戻す</button>
+            </div>
           </figure>
           <ul>
             <li><strong>行きの電車</strong>：福北ゆたか線
@@ -313,10 +299,15 @@
           <h3>③ 夕食 🐟</h3>
           <!-- 差し替え候補: 鯛めし／和食の雰囲気画像 -->
           <figure class="photo">
-            <img loading="lazy" data-replaceable="true" data-theme="taimeshi-japanese-meal"
+            <img loading="lazy" data-theme="taimeshi"
+                 data-default="https://images.unsplash.com/photo-1602273660127-a0000560a4c1?w=800&q=70&auto=format&fit=crop"
                  src="https://images.unsplash.com/photo-1602273660127-a0000560a4c1?w=800&q=70&auto=format&fit=crop"
                  alt="和食のイメージ">
             <figcaption>※イメージ画像（フリー素材）</figcaption>
+            <div class="photo-actions">
+              <button type="button" class="mini-btn change" title="jpg / png / webp・最大4.5MB">📷 写真を変更</button>
+              <button type="button" class="mini-btn revert">元に戻す</button>
+            </div>
           </figure>
           <ul>
             <li>18時：鯛めし 石蔵 デイトス店（地下1階 あじわいストリート）</li>
@@ -329,7 +320,6 @@
     <!-- ============ DAY 2 ============ -->
     <section class="day" id="day2">
       <div class="day-head">
-        <span class="day-badge">DAY 2</span>
         <h2>10月21日 <small>（水）</small></h2>
         <p class="day-theme">世界遺産 宗像大社観光</p>
       </div>
@@ -341,10 +331,15 @@
           <h3>❶ 移動（宗像大社へ）</h3>
           <!-- 差し替え候補: 神社・鳥居の雰囲気画像 -->
           <figure class="photo">
-            <img loading="lazy" data-replaceable="true" data-theme="munakata-shrine-torii"
+            <img loading="lazy" data-theme="munakata"
+                 data-default="https://images.unsplash.com/photo-1601823947179-2d2397d68d5e?w=800&q=70&auto=format&fit=crop"
                  src="https://images.unsplash.com/photo-1601823947179-2d2397d68d5e?w=800&q=70&auto=format&fit=crop"
                  alt="神社・鳥居のイメージ">
             <figcaption>※イメージ画像（フリー素材）</figcaption>
+            <div class="photo-actions">
+              <button type="button" class="mini-btn change" title="jpg / png / webp・最大4.5MB">📷 写真を変更</button>
+              <button type="button" class="mini-btn revert">元に戻す</button>
+            </div>
           </figure>
           <ul>
             <li>博多駅 9:02発 門司港行き → 東郷駅 9:47着</li>
@@ -386,10 +381,15 @@
           <h3>❹ フェリーで中津宮（大島）へ 🏝️</h3>
           <!-- 差し替え候補: 島・海の雰囲気画像 -->
           <figure class="photo">
-            <img loading="lazy" data-replaceable="true" data-theme="oshima-island-sea"
+            <img loading="lazy" data-theme="oshima"
+                 data-default="https://images.unsplash.com/photo-1590414193215-e73529fdd907?w=800&q=70&auto=format&fit=crop"
                  src="https://images.unsplash.com/photo-1590414193215-e73529fdd907?w=800&q=70&auto=format&fit=crop"
                  alt="島と海のイメージ">
             <figcaption>※イメージ画像（フリー素材）</figcaption>
+            <div class="photo-actions">
+              <button type="button" class="mini-btn change" title="jpg / png / webp・最大4.5MB">📷 写真を変更</button>
+              <button type="button" class="mini-btn revert">元に戻す</button>
+            </div>
           </figure>
           <ul>
             <li>フェリー おおしま</li>
@@ -405,9 +405,7 @@
         <div class="marker"><div class="dot">🚌</div></div>
         <div class="card">
           <h3>❺ 神湊波止場 → 東郷駅</h3>
-          <ul>
-            <li>バス：16:51発 → 東郷駅 17:12着（乗車21分）</li>
-          </ul>
+          <ul><li>バス：16:51発 → 東郷駅 17:12着（乗車21分）</li></ul>
         </div>
       </article>
 
@@ -430,10 +428,15 @@
           <h3>❻ 夕食 <span class="price">コース 3,800円</span></h3>
           <!-- 差し替え候補: 水炊き・鍋の雰囲気画像 -->
           <figure class="photo">
-            <img loading="lazy" data-replaceable="true" data-theme="mizutaki-hotpot"
+            <img loading="lazy" data-theme="mizutaki"
+                 data-default="https://images.unsplash.com/photo-1708597523963-40b30f846281?w=800&q=70&auto=format&fit=crop"
                  src="https://images.unsplash.com/photo-1708597523963-40b30f846281?w=800&q=70&auto=format&fit=crop"
                  alt="水炊き・鍋のイメージ">
             <figcaption>※イメージ画像（フリー素材）</figcaption>
+            <div class="photo-actions">
+              <button type="button" class="mini-btn change" title="jpg / png / webp・最大4.5MB">📷 写真を変更</button>
+              <button type="button" class="mini-btn revert">元に戻す</button>
+            </div>
           </figure>
           <ul>
             <li>18:30：水炊き 濱田屋 くうてん</li>
@@ -448,7 +451,6 @@
     <!-- ============ DAY 3 ============ -->
     <section class="day" id="day3">
       <div class="day-head">
-        <span class="day-badge">DAY 3</span>
         <h2>10月22日 <small>（木）</small></h2>
         <p class="day-theme">太宰府天満宮 観光</p>
       </div>
@@ -460,10 +462,15 @@
           <h3>⑴ 移動（太宰府天満宮へ）<span class="price">片道 610円</span></h3>
           <!-- 差し替え候補: 太宰府・梅の雰囲気画像 -->
           <figure class="photo">
-            <img loading="lazy" data-replaceable="true" data-theme="dazaifu-plum-shrine"
+            <img loading="lazy" data-theme="dazaifu"
+                 data-default="https://images.unsplash.com/photo-1521249896530-93597e4e8c4e?w=800&q=70&auto=format&fit=crop"
                  src="https://images.unsplash.com/photo-1521249896530-93597e4e8c4e?w=800&q=70&auto=format&fit=crop"
                  alt="梅と神社のイメージ">
             <figcaption>※イメージ画像（フリー素材）</figcaption>
+            <div class="photo-actions">
+              <button type="button" class="mini-btn change" title="jpg / png / webp・最大4.5MB">📷 写真を変更</button>
+              <button type="button" class="mini-btn revert">元に戻す</button>
+            </div>
           </figure>
           <ul>
             <li>博多駅バスターミナル（1階11番のりば）</li>
@@ -479,9 +486,7 @@
         <div class="marker"><div class="dot">🍱</div></div>
         <div class="card">
           <h3>昼食</h3>
-          <ul>
-            <li>12時30分：和牛明太神楽</li>
-          </ul>
+          <ul><li>12時30分：和牛明太神楽</li></ul>
         </div>
       </article>
 
@@ -492,14 +497,17 @@
           <h3>梅ヶ枝餅 人気店 🍡</h3>
           <!-- 差し替え候補: 和菓子・梅ヶ枝餅の雰囲気画像 -->
           <figure class="photo">
-            <img loading="lazy" data-replaceable="true" data-theme="umegae-mochi-wagashi"
+            <img loading="lazy" data-theme="umegaemochi"
+                 data-default="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=800&q=70&auto=format&fit=crop"
                  src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=800&q=70&auto=format&fit=crop"
                  alt="和菓子のイメージ">
             <figcaption>※イメージ画像（フリー素材）</figcaption>
+            <div class="photo-actions">
+              <button type="button" class="mini-btn change" title="jpg / png / webp・最大4.5MB">📷 写真を変更</button>
+              <button type="button" class="mini-btn revert">元に戻す</button>
+            </div>
           </figure>
-          <ul>
-            <li>さかの家、やす武</li>
-          </ul>
+          <ul><li>さかの家、やす武</li></ul>
         </div>
       </article>
 
@@ -508,9 +516,7 @@
         <div class="marker"><div class="dot">🚌</div></div>
         <div class="card">
           <h3>⑵ 帰りのバス <span class="sub">（太宰府天満宮駅直通 → 博多駅行き）</span></h3>
-          <ul>
-            <li>14:00発 / 14:15発 / 14:30発 / 14:45発</li>
-          </ul>
+          <ul><li>14:00発 / 14:15発 / 14:30発 / 14:45発</li></ul>
         </div>
       </article>
 
@@ -519,9 +525,7 @@
         <div class="marker"><div class="dot">🏁</div></div>
         <div class="card">
           <h3>⑶ 解散</h3>
-          <ul>
-            <li>博多駅にて解散</li>
-          </ul>
+          <ul><li>博多駅にて解散</li></ul>
         </div>
       </article>
     </section>
@@ -531,37 +535,135 @@
       <p>第2日目の宗像大社参拝のタイムスケジュールが大変タイトになっておりますが、スムーズに行動できますよう皆様のご協力をよろしくお願いします🙇</p>
     </div>
 
-    <footer>福岡旅行 詳細行程 · 2026.10.20 – 10.22 <span class="heart">♡</span></footer>
+    <footer>
+      福岡旅行 詳細行程 · 2026.10.20 – 10.22 <span class="heart">♡</span><br>
+      <span class="ver">v1.2</span>
+    </footer>
   </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   (function () {
-    if (typeof L === 'undefined') return;
+    // ---------- 表示切り替え（全部 / Day1-3） ----------
+    var vtabs = Array.prototype.slice.call(document.querySelectorAll('.vtab'));
+    var days = ['day1', 'day2', 'day3'].map(function (id) { return document.getElementById(id); });
+    function setView(v) {
+      vtabs.forEach(function (b) { b.classList.toggle('active', b.dataset.view === v); });
+      days.forEach(function (s) { if (s) s.style.display = (v === 'all' || s.id === v) ? '' : 'none'; });
+      if (v !== 'all') {
+        var nav = document.querySelector('.viewtabs');
+        if (nav) nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    vtabs.forEach(function (b) { b.addEventListener('click', function () { setView(b.dataset.view); }); });
 
-    // 3日間の主な立ち寄り先（時系列順）
-    var places = [
-      { name: '博多駅',                     coords: [33.5897, 130.4207] },
-      { name: '城戸南蔵院（篠栗町）',        coords: [33.6432, 130.5553] },
-      { name: '宗像大社 辺津宮',            coords: [33.8239, 130.5142] },
-      { name: '神湊波止場',                 coords: [33.8368, 130.5104] },
-      { name: '大島（中津宮・沖津宮遙拝所）', coords: [33.8894, 130.4262] },
-      { name: '太宰府天満宮',               coords: [33.5215, 130.5353] }
-    ];
+    // ---------- トースト ----------
+    var toast = document.getElementById('toast');
+    var toastTimer;
+    function showToast(msg, ok) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.className = 'toast show' + (ok === false ? ' err' : '');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.className = 'toast'; }, 3400);
+    }
 
-    var map = L.map('map', { scrollWheelZoom: false });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+    // ---------- 共有写真（Vercel Blob） ----------
+    var MAX = 4.5 * 1024 * 1024;
+    var OKTYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
-    var bounds = [];
-    places.forEach(function (p) {
-      L.marker(p.coords).addTo(map).bindPopup(p.name);
-      bounds.push(p.coords);
+    function bust(url, v) { return url + (url.indexOf('?') > -1 ? '&' : '?') + 'v=' + encodeURIComponent(v || ''); }
+
+    // 読み込み時：manifestを見て最新画像に差し替え（全訪問者共通）
+    fetch('/api/photos').then(function (r) { return r.ok ? r.json() : {}; }).then(function (m) {
+      if (!m) return;
+      document.querySelectorAll('img[data-theme]').forEach(function (img) {
+        var e = m[img.dataset.theme];
+        if (e && e.url) img.src = bust(e.url, e.updatedAt);
+      });
+    }).catch(function () {});
+
+    function upload(theme, file, img, btns) {
+      if (OKTYPES.indexOf(file.type) < 0) { showToast('画像は jpg / png / webp のみ対応です', false); return; }
+      if (file.size > MAX) { showToast('ファイルが大きすぎます（最大4.5MB）', false); return; }
+      btns.forEach(function (b) { b.disabled = true; });
+      showToast('アップロード中…', true);
+      fetch('/api/upload-photo?theme=' + encodeURIComponent(theme) + '&ct=' + encodeURIComponent(file.type), {
+        method: 'POST', headers: { 'content-type': 'application/octet-stream' }, body: file
+      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (res.ok && res.j.url) {
+            img.src = bust(res.j.url, res.j.updatedAt || Date.now());
+            showToast('写真を更新しました（全員に反映されます）', true);
+          } else if (res.j && res.j.error === 'blob_not_configured') {
+            showToast('写真共有ストレージが未接続です', false);
+          } else {
+            showToast('アップロードに失敗しました：' + ((res.j && res.j.message) || ''), false);
+          }
+        }).catch(function () { showToast('通信エラーが発生しました', false); })
+        .then(function () { btns.forEach(function (b) { b.disabled = false; }); });
+    }
+
+    function revert(theme, img, btns) {
+      btns.forEach(function (b) { b.disabled = true; });
+      showToast('元に戻しています…', true);
+      fetch('/api/upload-photo?theme=' + encodeURIComponent(theme) + '&revert=1', { method: 'POST' })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          img.src = img.dataset.default;
+          if (res.ok) showToast('元のフリー素材に戻しました', true);
+          else if (res.j && res.j.error === 'blob_not_configured') showToast('ストレージ未接続のため表示のみ戻しました', false);
+          else showToast('表示を戻しました', true);
+        }).catch(function () { img.src = img.dataset.default; showToast('表示を戻しました', true); })
+        .then(function () { btns.forEach(function (b) { b.disabled = false; }); });
+    }
+
+    document.querySelectorAll('.photo-actions').forEach(function (actions) {
+      var container = actions.closest('figure, .frame');
+      if (!container) return;
+      var img = container.querySelector('img[data-theme]');
+      if (!img) return;
+      var theme = img.dataset.theme;
+      var changeBtn = actions.querySelector('.change');
+      var revertBtn = actions.querySelector('.revert');
+      var btns = [changeBtn, revertBtn];
+      changeBtn.addEventListener('click', function () {
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/jpeg,image/png,image/webp';
+        input.addEventListener('change', function () { if (input.files && input.files[0]) upload(theme, input.files[0], img, btns); });
+        input.click();
+      });
+      revertBtn.addEventListener('click', function () { revert(theme, img, btns); });
     });
-    map.fitBounds(bounds, { padding: [30, 30] });
-    map.once('focus', function () { map.scrollWheelZoom.enable(); });
+
+    // ---------- 全体マップ（Leaflet） ----------
+    if (typeof L !== 'undefined') {
+      var places = [
+        { name: '博多駅',                     coords: [33.5897, 130.4207] },
+        { name: '城戸南蔵院（篠栗町）',        coords: [33.6432, 130.5553] },
+        { name: '宗像大社 辺津宮',            coords: [33.8239, 130.5142] },
+        { name: '神湊波止場',                 coords: [33.8368, 130.5104] },
+        { name: '大島（中津宮・沖津宮遙拝所）', coords: [33.8894, 130.4262] },
+        { name: '太宰府天満宮',               coords: [33.5215, 130.5353] }
+      ];
+      var map = L.map('map', { scrollWheelZoom: false });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18, attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+      var bounds = [];
+      places.forEach(function (p) {
+        var q = p.coords[0] + ',' + p.coords[1];
+        var html = '<b>' + p.name + '</b><br>' +
+          '<a href="https://www.google.com/maps/search/?api=1&query=' + q + '" target="_blank" rel="noopener">📍 Googleマップで開く</a>';
+        L.marker(p.coords).addTo(map).bindPopup(html);
+        bounds.push(p.coords);
+      });
+      map.fitBounds(bounds, { padding: [30, 30] });
+      map.once('focus', function () { map.scrollWheelZoom.enable(); });
+    }
   })();
 </script>
 </body>

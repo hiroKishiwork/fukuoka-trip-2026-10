@@ -1,0 +1,10 @@
+{
+  "name": "fukuoka-trip-2026-10",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "福岡旅行 詳細行程ページ（女子旅しおり）",
+  "dependencies": {
+    "@vercel/blob": "^2.6.1"
+  }
+}
