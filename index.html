@@ -179,6 +179,33 @@
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .toast.err { background: #d9736f; }
 
+  /* ---------- Gallery (みんなの写真) ---------- */
+  .gallery { margin-top: 30px; padding-top: 22px; border-top: 1px dashed var(--line); }
+  .gallery > h2 { text-align: center; font-size: 1.3rem; font-weight: 800; color: var(--pink-strong); margin: 0 0 4px; }
+  .gallery-note { text-align: center; font-size: 0.76rem; color: var(--muted); margin: 0 0 14px; line-height: 1.6; }
+  .gallery-controls { display: flex; gap: 8px; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .gallery-controls input {
+    font-family: inherit; font-size: 0.85rem; padding: 7px 14px; border: 1.5px solid var(--pink-soft);
+    border-radius: 999px; background: var(--card); color: var(--ink); min-width: 150px;
+  }
+  .gallery-controls input:focus { outline: none; border-color: var(--pink); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+  .g-item { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-sm); padding: 6px; }
+  .g-item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 9px; display: block; background: var(--pink-soft); cursor: zoom-in; }
+  .g-item figcaption { text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 5px; min-height: 1em; word-break: break-word; }
+  .g-del {
+    position: absolute; top: 10px; right: 10px; border: none; background: rgba(40,20,28,0.5); color: #fff;
+    width: 26px; height: 26px; border-radius: 50%; font-size: 0.8rem; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .g-del:hover { background: #d9736f; }
+  .gallery-empty { grid-column: 1 / -1; text-align: center; color: var(--muted); font-size: 0.85rem; padding: 22px 10px; }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(20,10,16,0.88); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+  .lightbox.show { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+  .lightbox .lb-close { position: absolute; top: 14px; right: 20px; color: #fff; font-size: 2.1rem; line-height: 1; cursor: pointer; }
+
   @media (min-width: 560px) {
     .item { grid-template-columns: 3.6rem 2.2rem 1fr; }
     .hero h1 { font-size: 1.95rem; }
@@ -562,13 +589,24 @@
       <p>第2日目の宗像大社参拝のタイムスケジュールが大変タイトになっておりますが、スムーズに行動できますよう皆様のご協力をよろしくお願いします🙇</p>
     </div>
 
+    <section class="gallery" id="gallery">
+      <h2>📸 みんなの写真</h2>
+      <p class="gallery-note">旅行後の写真をみんなで自由に追加できます 🌸<br>（jpg / png / webp・1枚あたり最大4.5MB・一度に10枚まで）</p>
+      <div class="gallery-controls">
+        <input id="galName" type="text" maxlength="20" placeholder="お名前（任意）" aria-label="お名前（任意）">
+        <button id="galAdd" type="button" class="mini-btn change">📷 写真を追加</button>
+      </div>
+      <div id="galGrid" class="gallery-grid"></div>
+    </section>
+
     <footer>
       福岡旅行 詳細行程 · 2026.10.20 – 10.22 <span class="heart">♡</span><br>
-      <span class="ver">v1.3</span>
+      <span class="ver">v1.4</span>
     </footer>
   </main>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="lightbox" class="lightbox" aria-hidden="true"><span class="lb-close" aria-label="閉じる">×</span><img alt="拡大表示"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
@@ -717,6 +755,127 @@
           '&travelmode=driving';
       }
     }
+  })();
+</script>
+
+<script>
+  // ---------- みんなの写真ギャラリー ----------
+  (function () {
+    var grid = document.getElementById('galGrid');
+    var addBtn = document.getElementById('galAdd');
+    var nameInput = document.getElementById('galName');
+    var lb = document.getElementById('lightbox');
+    var lbImg = lb ? lb.querySelector('img') : null;
+    if (!grid || !addBtn) return;
+
+    var MAX = 4.5 * 1024 * 1024;
+    var OK = ['image/jpeg', 'image/png', 'image/webp'];
+
+    var toastEl = document.getElementById('toast');
+    var tT;
+    function toast(msg, ok) {
+      if (!toastEl) return;
+      toastEl.textContent = msg;
+      toastEl.className = 'toast show' + (ok === false ? ' err' : '');
+      clearTimeout(tT);
+      tT = setTimeout(function () { toastEl.className = 'toast'; }, 3400);
+    }
+
+    function openLightbox(url) { if (lb && lbImg) { lbImg.src = url; lb.classList.add('show'); } }
+    if (lb) lb.addEventListener('click', function () { lb.classList.remove('show'); if (lbImg) lbImg.src = ''; });
+
+    function makeCard(it) {
+      var fig = document.createElement('figure');
+      fig.className = 'g-item';
+      var img = document.createElement('img');
+      img.loading = 'lazy';
+      img.src = it.url;
+      img.alt = 'みんなの写真' + (it.name ? ('（' + it.name + '）') : '');
+      img.addEventListener('click', function () { openLightbox(it.url); });
+      var cap = document.createElement('figcaption');
+      cap.textContent = it.name || '';
+      var del = document.createElement('button');
+      del.className = 'g-del'; del.type = 'button'; del.title = '削除'; del.textContent = '🗑';
+      del.addEventListener('click', function () {
+        if (confirm('この写真を削除しますか？（全員の表示から消えます）')) doDelete(it, fig);
+      });
+      fig.appendChild(img); fig.appendChild(del); fig.appendChild(cap);
+      return fig;
+    }
+
+    function render(items) {
+      grid.innerHTML = '';
+      if (!items || !items.length) {
+        grid.innerHTML = '<p class="gallery-empty">まだ写真がありません。最初の1枚を追加しましょう 🌸</p>';
+        return;
+      }
+      items.forEach(function (it) { grid.appendChild(makeCard(it)); });
+    }
+
+    function load() {
+      fetch('/api/gallery-list')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(render)
+        .catch(function () { render([]); });
+    }
+
+    function doDelete(it, fig) {
+      fetch('/api/gallery-upload?del=1&url=' + encodeURIComponent(it.url), { method: 'POST' })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (res.ok) {
+            fig.remove();
+            if (!grid.querySelector('.g-item')) render([]);
+            toast('削除しました', true);
+          } else if (res.j && res.j.error === 'blob_not_configured') {
+            toast('写真ストレージが未接続です', false);
+          } else {
+            toast('削除に失敗しました', false);
+          }
+        })
+        .catch(function () { toast('通信エラーが発生しました', false); });
+    }
+
+    function uploadOne(file, name) {
+      return fetch('/api/gallery-upload?ct=' + encodeURIComponent(file.type) + '&name=' + encodeURIComponent(name || ''), {
+        method: 'POST', headers: { 'content-type': 'application/octet-stream' }, body: file
+      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); });
+    }
+
+    addBtn.addEventListener('click', function () {
+      var input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/jpeg,image/png,image/webp';
+      input.multiple = true;
+      input.addEventListener('change', function () {
+        var files = Array.prototype.slice.call(input.files || []);
+        if (!files.length) return;
+        if (files.length > 10) { toast('一度に追加できるのは10枚までです', false); files = files.slice(0, 10); }
+        var valid = files.filter(function (f) { return OK.indexOf(f.type) >= 0 && f.size <= MAX; });
+        var skipped = files.length - valid.length;
+        if (!valid.length) { toast('jpg / png / webp・最大4.5MBの画像を選んでください', false); return; }
+        var name = (nameInput && nameInput.value || '').trim().slice(0, 20);
+        addBtn.disabled = true;
+        var ok = 0;
+        function next(i) {
+          if (i >= valid.length) {
+            addBtn.disabled = false;
+            toast(ok + '枚追加しました' + (skipped ? ('（' + skipped + '枚はスキップ）') : ''), ok > 0);
+            load();
+            return;
+          }
+          toast('アップロード中… ' + (i + 1) + '/' + valid.length, true);
+          uploadOne(valid[i], name)
+            .then(function (res) { if (res.ok) ok++; })
+            .catch(function () {})
+            .then(function () { next(i + 1); });
+        }
+        next(0);
+      });
+      input.click();
+    });
+
+    load();
   })();
 </script>
 </body>
