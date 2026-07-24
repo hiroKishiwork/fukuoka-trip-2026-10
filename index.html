@@ -4,210 +4,233 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>福岡旅行 詳細行程（10/20-10/22）</title>
-<meta name="description" content="福岡旅行 詳細行程 2026年10月20日〜22日（宗像大社・太宰府ほか）">
+<meta name="description" content="福岡旅行 詳細行程 2026年10月20日〜22日（宗像大社・太宰府ほか）女子旅しおり">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
   :root {
-    --bg: #f4f2ec;
+    --bg: #fdf5f3;
     --card: #ffffff;
-    --ink: #22303f;
-    --muted: #6c7581;
-    --navy: #1d3a5f;
-    --navy-soft: #eaeff5;
-    --terra: #c26240;
-    --terra-soft: #f7e9e2;
-    --border: #e6e2d8;
-    --line: #d7d2c6;
-    --rail: #cdd6e1;
-    --shadow: 0 6px 18px rgba(29,58,95,0.08);
+    --ink: #5c4a52;
+    --muted: #b198a2;
+    --pink: #e79db0;
+    --pink-strong: #d67e94;
+    --pink-soft: #fce7ec;
+    --mint: #9fd4c8;
+    --mint-soft: #e6f5f1;
+    --cream: #fdf3e7;
+    --border: #f4e0e5;
+    --line: #f3c9d4;
+    --shadow: 0 8px 22px rgba(214,126,148,0.13);
+    --shadow-sm: 0 3px 10px rgba(214,126,148,0.10);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #10151d;
-      --card: #1a212c;
-      --ink: #e6eaf0;
-      --muted: #939daa;
-      --navy: #7ba3d6;
-      --navy-soft: #1f2a3a;
-      --terra: #e0895f;
-      --terra-soft: #2b1f19;
-      --border: #2a323e;
-      --line: #333c49;
-      --rail: #333e4d;
-      --shadow: 0 6px 18px rgba(0,0,0,0.35);
+      --bg: #211a1e;
+      --card: #2c2329;
+      --ink: #f0e2e7;
+      --muted: #c0a3ae;
+      --pink: #e79db0;
+      --pink-strong: #efb0c0;
+      --pink-soft: #3b2a31;
+      --mint: #9fd0c6;
+      --mint-soft: #24312d;
+      --cream: #332a24;
+      --border: #3d2f35;
+      --line: #5c414b;
+      --shadow: 0 8px 22px rgba(0,0,0,0.35);
+      --shadow-sm: 0 3px 10px rgba(0,0,0,0.30);
     }
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--bg);
+    background:
+      radial-gradient(120% 90% at 100% 0%, var(--mint-soft), transparent 55%),
+      var(--bg);
     color: var(--ink);
-    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
-    line-height: 1.7;
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+    line-height: 1.75;
     font-size: 15.5px;
     -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .day-badge, .hero .dates, .rounded {
+    font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
   }
 
   /* ---------- Hero ---------- */
   .hero {
-    background:
-      radial-gradient(120% 120% at 85% -10%, rgba(194,98,64,0.55), transparent 55%),
-      linear-gradient(135deg, var(--navy), #12273f);
-    color: #fff;
-    padding: 34px 20px 28px;
     text-align: center;
+    padding: 30px 18px 8px;
+    max-width: 760px; margin: 0 auto;
   }
-  .hero .kicker {
-    display: inline-block;
-    letter-spacing: 0.28em;
-    font-size: 0.72rem;
-    font-weight: 700;
-    opacity: 0.85;
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 999px;
-    padding: 4px 14px;
-    margin-bottom: 14px;
-  }
+  .hero .deco { font-size: 0.9rem; color: var(--pink); letter-spacing: 0.4em; margin-bottom: 6px; }
   .hero h1 {
-    margin: 0 0 6px;
-    font-size: 1.7rem;
-    font-weight: 900;
-    line-height: 1.28;
+    margin: 0 0 8px;
+    font-size: 1.72rem; font-weight: 800; letter-spacing: 0.01em;
+    color: var(--pink-strong);
+    line-height: 1.32;
   }
+  .hero h1 .heart { color: var(--pink); }
   .hero .dates {
-    margin: 0;
-    font-size: 0.95rem;
-    opacity: 0.92;
-    font-weight: 500;
+    display: inline-block;
+    background: var(--card);
+    border: 1.5px dashed var(--pink);
+    color: var(--pink-strong);
+    border-radius: 999px;
+    padding: 5px 16px;
+    font-size: 0.86rem; font-weight: 700;
+    box-shadow: var(--shadow-sm);
   }
+  .hero-photo {
+    max-width: 760px; margin: 16px auto 0; padding: 0 16px;
+  }
+  .hero-photo .frame {
+    background: var(--card); padding: 9px 9px 8px; border-radius: 20px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+  }
+  .hero-photo img {
+    width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block;
+  }
+  .hero-photo figcaption { text-align: right; font-size: 0.7rem; color: var(--muted); margin-top: 5px; }
+
   /* ---------- Overview map ---------- */
-  .map-wrap { max-width: 780px; margin: 0 auto; padding: 16px 16px 0; }
+  .map-wrap { max-width: 760px; margin: 22px auto 0; padding: 0 16px; }
   .map-title {
-    margin: 0 2px 8px; font-size: 0.9rem; font-weight: 700; color: var(--ink);
-    display: flex; align-items: center; gap: 6px;
+    margin: 0 4px 8px; font-size: 0.95rem; font-weight: 700; color: var(--pink-strong);
+    font-family: "M PLUS Rounded 1c", sans-serif;
   }
   #map {
-    height: 340px;
-    width: 100%;
-    border-radius: 14px;
-    border: 1px solid var(--border);
+    height: 330px; width: 100%;
+    border-radius: 20px;
+    border: 3px solid var(--pink-soft);
+    outline: 1.5px solid var(--pink);
     box-shadow: var(--shadow);
     background: var(--card);
     z-index: 0;
   }
-  .leaflet-popup-content { font-family: "Noto Sans JP", sans-serif; font-weight: 700; }
-  .map-note { margin: 6px 4px 0; font-size: 0.74rem; color: var(--muted); }
+  .leaflet-popup-content { font-family: "M PLUS Rounded 1c","Noto Sans JP",sans-serif; font-weight: 700; color: #5c4a52; }
+  .map-note { margin: 7px 6px 0; font-size: 0.72rem; color: var(--muted); }
 
   /* ---------- Layout ---------- */
-  .wrap { max-width: 780px; margin: 0 auto; padding: 8px 16px 60px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 10px 16px 60px; }
 
-  .day { padding-top: 18px; scroll-margin-top: 24px; }
-  .day-head { margin: 10px 2px 18px; }
+  .day { padding-top: 22px; }
+  .day-head { text-align: center; margin: 8px 0 20px; }
   .day-badge {
-    display: inline-block;
-    background: var(--navy); color: #fff;
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-    padding: 3px 10px; border-radius: 6px;
+    display: inline-block; position: relative;
+    background: linear-gradient(135deg, var(--pink), var(--pink-strong));
+    color: #fff; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em;
+    padding: 5px 20px; border-radius: 999px;
+    box-shadow: var(--shadow-sm);
   }
-  .day-head h2 {
-    margin: 8px 0 2px; font-size: 1.4rem; font-weight: 900; color: var(--ink);
-  }
-  .day-head h2 small { font-size: 0.95rem; font-weight: 500; color: var(--muted); }
-  .day-theme { margin: 0; color: var(--terra); font-weight: 700; font-size: 0.92rem; }
+  .day-badge::before, .day-badge::after { content: "🎀"; position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.8rem; }
+  .day-badge::before { left: -18px; }
+  .day-badge::after { right: -18px; }
+  .day-head h2 { margin: 12px 0 3px; font-size: 1.42rem; font-weight: 800; color: var(--ink); }
+  .day-head h2 small { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
+  .day-theme { margin: 0; color: var(--pink-strong); font-weight: 700; font-size: 0.9rem; }
+  .day-theme::before { content: "✿ "; color: var(--mint); }
+  .day-theme::after  { content: " ✿"; color: var(--mint); }
 
   /* ---------- Timeline ---------- */
-  .item {
-    display: grid;
-    grid-template-columns: 3.1rem 2rem 1fr;
-    column-gap: 4px;
-  }
+  .item { display: grid; grid-template-columns: 3.1rem 2rem 1fr; column-gap: 5px; }
   .time {
-    text-align: right;
-    padding-top: 6px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--navy);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
+    text-align: right; padding-top: 8px;
+    font-size: 0.8rem; font-weight: 700; color: var(--pink-strong);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
   }
-  .time.tba { color: var(--muted); font-weight: 500; font-size: 0.74rem; }
+  .time.tba { color: var(--muted); font-weight: 500; font-size: 0.72rem; }
   .marker { position: relative; display: flex; justify-content: center; }
   .marker::before {
-    content: ""; position: absolute;
-    top: 6px; bottom: -6px; left: 50%;
-    width: 2px; background: var(--rail); transform: translateX(-50%);
+    content: ""; position: absolute; top: 8px; bottom: -8px; left: 50%;
+    width: 3px; background: var(--line); border-radius: 3px; transform: translateX(-50%);
   }
   .item:last-child .marker::before { display: none; }
   .dot {
-    position: relative; z-index: 1;
-    width: 2rem; height: 2rem; border-radius: 50%;
-    background: var(--card); border: 2px solid var(--terra);
+    position: relative; z-index: 1; width: 2rem; height: 2rem; border-radius: 50%;
+    background: var(--card); border: 2.5px solid var(--pink);
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.95rem; margin-top: 2px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    font-size: 0.92rem; margin-top: 4px; box-shadow: 0 2px 6px rgba(214,126,148,0.22);
   }
   .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 13px 15px 14px;
-    margin-bottom: 14px;
-    box-shadow: var(--shadow);
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 14px 16px 15px; margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
   }
-  .card h3 { margin: 0 0 6px; font-size: 1rem; font-weight: 700; }
+  .card h3 { margin: 0 0 8px; font-size: 1.02rem; font-weight: 700; color: var(--ink); }
   .card ul { margin: 4px 0; padding-left: 1.15em; }
   .card li { margin: 3px 0; }
   .card li ul { margin-top: 3px; }
-  .card strong { font-weight: 700; color: var(--ink); }
+  .card li::marker { color: var(--pink); }
+  .card strong { font-weight: 700; color: var(--pink-strong); }
   .sub { color: var(--muted); font-size: 0.86em; }
   .price {
-    display: inline-block;
-    background: var(--navy-soft); color: var(--navy);
-    font-weight: 700; font-size: 0.8rem;
-    padding: 1px 8px; border-radius: 6px;
+    display: inline-block; background: var(--mint-soft); color: #3f8577;
+    font-weight: 700; font-size: 0.76rem; padding: 1px 9px; border-radius: 999px;
+    font-family: "M PLUS Rounded 1c", sans-serif;
   }
+  @media (prefers-color-scheme: dark) { .price { color: #a7e0d3; } }
+
+  /* ---------- Photo (polaroid) ---------- */
+  .photo {
+    margin: 0 0 12px; background: var(--card); padding: 8px 8px 6px;
+    border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-sm);
+  }
+  .photo img {
+    width: 100%; height: 175px; object-fit: cover; border-radius: 9px; display: block;
+    background: var(--pink-soft);
+  }
+  .photo figcaption { text-align: right; font-size: 0.68rem; color: var(--muted); margin-top: 5px; }
 
   .tip {
-    background: var(--terra-soft);
-    border-left: 3px solid var(--terra);
-    border-radius: 8px;
-    padding: 9px 12px; margin: 11px 0 8px;
-    font-size: 0.88rem;
+    background: var(--cream); border-left: 3px solid var(--pink);
+    border-radius: 10px; padding: 9px 12px; margin: 11px 0 8px; font-size: 0.88rem;
   }
-
   .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8px 0 2px; }
   table { border-collapse: collapse; width: 100%; min-width: 440px; font-size: 0.83rem; }
-  th, td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; vertical-align: top; }
-  th { background: var(--navy-soft); color: var(--navy); font-weight: 700; white-space: nowrap; }
+  th, td { border: 1px solid var(--border); padding: 7px 9px; text-align: left; vertical-align: top; }
+  th { background: var(--pink-soft); color: var(--pink-strong); font-weight: 700; white-space: nowrap; }
 
   .notice {
-    background: var(--card);
-    border: 1px dashed var(--terra);
-    border-radius: 14px;
-    padding: 16px 18px; margin-top: 20px;
-    font-size: 0.9rem;
+    background: var(--card); border: 2px dashed var(--pink);
+    border-radius: 18px; padding: 16px 18px; margin-top: 22px; font-size: 0.9rem;
+    box-shadow: var(--shadow-sm);
   }
-  .notice h3 { margin: 0 0 6px; font-size: 1rem; color: var(--terra); }
+  .notice h3 { margin: 0 0 6px; font-size: 1rem; color: var(--pink-strong); }
   .notice p { margin: 0; }
 
-  footer { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 26px; }
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 28px; }
+  footer .heart { color: var(--pink); }
 
   @media (min-width: 560px) {
     .item { grid-template-columns: 3.6rem 2.2rem 1fr; }
-    .hero h1 { font-size: 1.9rem; }
+    .hero h1 { font-size: 1.95rem; }
+    .photo img { height: 200px; }
+    .hero-photo img { height: 230px; }
   }
 </style>
 </head>
 <body>
 
   <header class="hero">
-    <h1>福岡旅行 詳細行程</h1>
-    <p class="dates">2026.10.20 <span style="opacity:.6">(火)</span> – 10.22 <span style="opacity:.6">(木)</span> ｜ 宗像大社・太宰府ほか</p>
+    <div class="deco">✿ ・ ♡ ・ ✿</div>
+    <h1>福岡旅行 詳細行程 <span class="heart">♡</span></h1>
+    <p class="dates">2026.10.20 (火) – 10.22 (木) ｜ 宗像大社・太宰府</p>
   </header>
+
+  <!-- 差し替え候補: 旅行後に実際の集合写真などへ差し替え可（下の src を置き換えてください） -->
+  <div class="hero-photo">
+    <div class="frame">
+      <img loading="lazy" data-replaceable="true" data-theme="fukuoka-girlstrip-cover"
+           src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=70&auto=format&fit=crop"
+           alt="女子旅イメージ（着物と街並み）">
+      <figcaption>※イメージ画像（フリー素材／実際の場所とは異なります）</figcaption>
+    </div>
+  </div>
 
   <div class="map-wrap">
     <p class="map-title">🗺️ 全体マップ（主な立ち寄り先）</p>
@@ -256,6 +279,13 @@
         <div class="marker"><div class="dot">🛕</div></div>
         <div class="card">
           <h3>② 城戸南蔵院 涅槃像 観光 <span class="price">拝観 500円</span></h3>
+          <!-- 差し替え候補: お寺の雰囲気画像。実際に撮った写真へ src を差し替え可 -->
+          <figure class="photo">
+            <img loading="lazy" data-replaceable="true" data-theme="nanzoin-temple"
+                 src="https://images.unsplash.com/photo-1574236170880-fbbca132d83d?w=800&q=70&auto=format&fit=crop"
+                 alt="お寺のイメージ">
+            <figcaption>※イメージ画像（フリー素材）</figcaption>
+          </figure>
           <ul>
             <li><strong>行きの電車</strong>：福北ゆたか線
               <ul>
@@ -280,7 +310,14 @@
         <div class="time">18:00</div>
         <div class="marker"><div class="dot">🍽️</div></div>
         <div class="card">
-          <h3>③ 夕食</h3>
+          <h3>③ 夕食 🐟</h3>
+          <!-- 差し替え候補: 鯛めし／和食の雰囲気画像 -->
+          <figure class="photo">
+            <img loading="lazy" data-replaceable="true" data-theme="taimeshi-japanese-meal"
+                 src="https://images.unsplash.com/photo-1602273660127-a0000560a4c1?w=800&q=70&auto=format&fit=crop"
+                 alt="和食のイメージ">
+            <figcaption>※イメージ画像（フリー素材）</figcaption>
+          </figure>
           <ul>
             <li>18時：鯛めし 石蔵 デイトス店（地下1階 あじわいストリート）</li>
             <li>食後、徒歩でホテルへ戻る</li>
@@ -299,9 +336,16 @@
 
       <article class="item">
         <div class="time">09:02発</div>
-        <div class="marker"><div class="dot">🚆</div></div>
+        <div class="marker"><div class="dot">⛩️</div></div>
         <div class="card">
-          <h3>❶ 移動</h3>
+          <h3>❶ 移動（宗像大社へ）</h3>
+          <!-- 差し替え候補: 神社・鳥居の雰囲気画像 -->
+          <figure class="photo">
+            <img loading="lazy" data-replaceable="true" data-theme="munakata-shrine-torii"
+                 src="https://images.unsplash.com/photo-1601823947179-2d2397d68d5e?w=800&q=70&auto=format&fit=crop"
+                 alt="神社・鳥居のイメージ">
+            <figcaption>※イメージ画像（フリー素材）</figcaption>
+          </figure>
           <ul>
             <li>博多駅 9:02発 門司港行き → 東郷駅 9:47着</li>
             <li>駅タクシー乗り場から3台に分乗（乗車約15分）</li>
@@ -339,7 +383,14 @@
         <div class="time">13:50発</div>
         <div class="marker"><div class="dot">⛴️</div></div>
         <div class="card">
-          <h3>❹ フェリーで中津宮（大島）へ</h3>
+          <h3>❹ フェリーで中津宮（大島）へ 🏝️</h3>
+          <!-- 差し替え候補: 島・海の雰囲気画像 -->
+          <figure class="photo">
+            <img loading="lazy" data-replaceable="true" data-theme="oshima-island-sea"
+                 src="https://images.unsplash.com/photo-1590414193215-e73529fdd907?w=800&q=70&auto=format&fit=crop"
+                 alt="島と海のイメージ">
+            <figcaption>※イメージ画像（フリー素材）</figcaption>
+          </figure>
           <ul>
             <li>フェリー おおしま</li>
             <li><strong>行き</strong>：13:50発 → 14:15着 <span class="sub">（所要25分・片道570円）</span></li>
@@ -377,6 +428,13 @@
         <div class="marker"><div class="dot">🍲</div></div>
         <div class="card">
           <h3>❻ 夕食 <span class="price">コース 3,800円</span></h3>
+          <!-- 差し替え候補: 水炊き・鍋の雰囲気画像 -->
+          <figure class="photo">
+            <img loading="lazy" data-replaceable="true" data-theme="mizutaki-hotpot"
+                 src="https://images.unsplash.com/photo-1708597523963-40b30f846281?w=800&q=70&auto=format&fit=crop"
+                 alt="水炊き・鍋のイメージ">
+            <figcaption>※イメージ画像（フリー素材）</figcaption>
+          </figure>
           <ul>
             <li>18:30：水炊き 濱田屋 くうてん</li>
             <li>テーブルは5名の2つに分かれます</li>
@@ -397,9 +455,16 @@
 
       <article class="item">
         <div class="time">09:45発</div>
-        <div class="marker"><div class="dot">🚌</div></div>
+        <div class="marker"><div class="dot">⛩️</div></div>
         <div class="card">
-          <h3>⑴ 移動 <span class="price">片道 610円</span></h3>
+          <h3>⑴ 移動（太宰府天満宮へ）<span class="price">片道 610円</span></h3>
+          <!-- 差し替え候補: 太宰府・梅の雰囲気画像 -->
+          <figure class="photo">
+            <img loading="lazy" data-replaceable="true" data-theme="dazaifu-plum-shrine"
+                 src="https://images.unsplash.com/photo-1521249896530-93597e4e8c4e?w=800&q=70&auto=format&fit=crop"
+                 alt="梅と神社のイメージ">
+            <figcaption>※イメージ画像（フリー素材）</figcaption>
+          </figure>
           <ul>
             <li>博多駅バスターミナル（1階11番のりば）</li>
             <li>9:45発 西鉄太宰府駅行き直通バス → 10:25着</li>
@@ -424,7 +489,14 @@
         <div class="time tba">立寄り</div>
         <div class="marker"><div class="dot">🍡</div></div>
         <div class="card">
-          <h3>梅ヶ枝餅 人気店</h3>
+          <h3>梅ヶ枝餅 人気店 🍡</h3>
+          <!-- 差し替え候補: 和菓子・梅ヶ枝餅の雰囲気画像 -->
+          <figure class="photo">
+            <img loading="lazy" data-replaceable="true" data-theme="umegae-mochi-wagashi"
+                 src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=800&q=70&auto=format&fit=crop"
+                 alt="和菓子のイメージ">
+            <figcaption>※イメージ画像（フリー素材）</figcaption>
+          </figure>
           <ul>
             <li>さかの家、やす武</li>
           </ul>
@@ -459,7 +531,7 @@
       <p>第2日目の宗像大社参拝のタイムスケジュールが大変タイトになっておりますが、スムーズに行動できますよう皆様のご協力をよろしくお願いします🙇</p>
     </div>
 
-    <footer>福岡旅行 詳細行程 · 2026.10.20 – 10.22</footer>
+    <footer>福岡旅行 詳細行程 · 2026.10.20 – 10.22 <span class="heart">♡</span></footer>
   </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -478,7 +550,6 @@
     ];
 
     var map = L.map('map', { scrollWheelZoom: false });
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; OpenStreetMap contributors'
@@ -489,10 +560,7 @@
       L.marker(p.coords).addTo(map).bindPopup(p.name);
       bounds.push(p.coords);
     });
-
     map.fitBounds(bounds, { padding: [30, 30] });
-
-    // タップ操作を阻害しないよう、シングルタッチのドラッグは許可・ズームはボタン/ピンチのみ
     map.once('focus', function () { map.scrollWheelZoom.enable(); });
   })();
 </script>
